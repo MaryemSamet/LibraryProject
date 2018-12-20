@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_libraryproject" default="compile.module.libraryproject">
+  <dirname property="module.libraryproject.basedir" file="${ant.file.module_libraryproject}"/>
+  
+  <property name="module.jdk.home.libraryproject" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.libraryproject" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.libraryproject" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.libraryproject" value="-encoding UTF-8 -source 10 -target 10 ${compiler.args}"/>
+  
+  <property name="libraryproject.output.dir" value="undefined"/>
+  <property name="libraryproject.testoutput.dir" value="undefined"/>
+  
+  <path id="libraryproject.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="libraryproject.module.production.classpath"/>
+  
+  <path id="libraryproject.runtime.production.module.classpath"/>
+  
+  <path id="libraryproject.module.classpath"/>
+  
+  <path id="libraryproject.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.libraryproject">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.libraryproject">
+    <patternset refid="excluded.from.module.libraryproject"/>
+  </patternset>
+  
+  
+  <target name="compile.module.libraryproject" depends="compile.module.libraryproject.production,compile.module.libraryproject.tests" description="Compile module LibraryProject"/>
+  
+  <target name="compile.module.libraryproject.production" depends="register.custom.compilers" description="Compile module LibraryProject; production classes"/>
+  
+  <target name="compile.module.libraryproject.tests" depends="register.custom.compilers,compile.module.libraryproject.production" description="compile module LibraryProject; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.libraryproject" description="cleanup module">
+    <delete dir="${libraryproject.output.dir}"/>
+    <delete dir="${libraryproject.testoutput.dir}"/>
+  </target>
+</project>
